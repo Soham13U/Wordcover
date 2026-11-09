@@ -3,8 +3,8 @@
 @import "tailwindcss/utilities.css";
 @import "nativewind/theme";
 
-/* Paper palette in every scheme block so the OS color scheme cannot
-   bring back the old plum theme. RGB channels feed the @theme colors. */
+/* Paper palette. Keep colors identical across schemes so the OS theme
+   cannot revive an old palette. RGB channels feed the @theme colors. */
 @layer theme {
   :root {
     --primary: 194 54 36;
@@ -46,46 +46,6 @@
       --accent: 236 228 214;
       --accent-foreground: 26 22 18;
     }
-  }
-
-  :root.dark {
-    --primary: 194 54 36;
-    --primary-foreground: 255 250 245;
-    --card: 255 252 247;
-    --secondary: 236 228 214;
-    --secondary-foreground: 26 22 18;
-    --background: 246 241 231;
-    --popover: 255 252 247;
-    --popover-foreground: 26 22 18;
-    --muted: 236 228 214;
-    --muted-foreground: 92 84 74;
-    --destructive: 154 28 22;
-    --foreground: 26 22 18;
-    --border: 220 210 196;
-    --input: 220 210 196;
-    --ring: 194 54 36;
-    --accent: 236 228 214;
-    --accent-foreground: 26 22 18;
-  }
-
-  :root.light {
-    --primary: 194 54 36;
-    --primary-foreground: 255 250 245;
-    --card: 255 252 247;
-    --secondary: 236 228 214;
-    --secondary-foreground: 26 22 18;
-    --background: 246 241 231;
-    --popover: 255 252 247;
-    --popover-foreground: 26 22 18;
-    --muted: 236 228 214;
-    --muted-foreground: 92 84 74;
-    --destructive: 154 28 22;
-    --foreground: 26 22 18;
-    --border: 220 210 196;
-    --input: 220 210 196;
-    --ring: 194 54 36;
-    --accent: 236 228 214;
-    --accent-foreground: 26 22 18;
   }
 }
 

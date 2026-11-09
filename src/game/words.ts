@@ -77,45 +77,45 @@ const pairs: [Category, string, string][] = [
   ["objects", "Backpack", "Suitcase"],
   ["objects", "Candle", "Lantern"],
   ["objects", "Hammer", "Mallet"], //
-  ["objects", "Blanket", "Quilt"],
+  ["objects", "Blanket", "Quilt"], //
   ["objects", "Mirror", "Window"],
   ["objects", "Pencil", "Crayon"],
   ["objects", "Keyboard", "Typewriter"],
-  ["objects", "Umbrella", "Parasol"],
+  ["objects", "Umbrella", "Parasol"], //
   ["objects", "Clock", "Watch"],
   ["objects", "Scissors", "Knife"],
   ["objects", "Headphones", "Earbuds"],
   ["objects", "Microscope", "Telescope"],
-  ["objects", "Notebook", "Diary"],
+  ["objects", "Notebook", "Diary"], //
   ["objects", "Flashlight", "Lamp"],
   ["objects", "Bicycle", "Scooter"],
   ["objects", "Elevator", "Escalator"],
-  ["objects", "Pillow", "Cushion"],
+  ["objects", "Pillow", "Cushion"], //
   ["objects", "Refrigerator", "Freezer"],
 
   // ==========================================
   // PLACES (20)
   // ==========================================
   ["places", "Library", "Bookstore"],
-  ["places", "Beach", "Lakeshore"],
+  ["places", "Beach", "Lakeshore"], //
   ["places", "Airport", "Train station"],
-  ["places", "Museum", "Gallery"],
-  ["places", "Kitchen", "Pantry"],
-  ["places", "Stadium", "Arena"],
-  ["places", "Desert", "Canyon"],
-  ["places", "Harbor", "Marina"],
+  ["places", "Museum", "Gallery"], //
+  ["places", "Kitchen", "Pantry"], //
+  ["places", "Stadium", "Arena"], //
+  ["places", "Desert", "Canyon"], //
+  ["places", "Harbor", "Marina"], //
   ["places", "Classroom", "Lecture hall"],
   ["places", "Bakery", "Cafe"],
-  ["places", "Forest", "Jungle"],
+  ["places", "Forest", "Jungle"], //
   ["places", "Attic", "Basement"],
   ["places", "Hospital", "Clinic"],
-  ["places", "Hotel", "Resort"],
+  ["places", "Hotel", "Resort"], //
   ["places", "Zoo", "Aquarium"],
-  ["places", "Castle", "Palace"],
+  ["places", "Castle", "Palace"], //
   ["places", "Gym", "Playground"],
-  ["places", "Cinema", "Theater"],
-  ["places", "Supermarket", "Farmers market"],
-  ["places", "Temple", "Monastery"],
+  ["places", "Cinema", "Theater"], //
+  ["places", "Supermarket", "Farmers market"], //
+  ["places", "Temple", "Monastery"], //
 
   // ==========================================
   // JOBS (20)

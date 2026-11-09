@@ -1,3 +1,5 @@
+import 'react-native-gesture-handler';
+
 import { Fraunces_400Regular_Italic, Fraunces_700Bold, Fraunces_700Bold_Italic } from '@expo-google-fonts/fraunces';
 import { Outfit_400Regular, Outfit_500Medium, Outfit_600SemiBold, Outfit_700Bold } from '@expo-google-fonts/outfit';
 import { Stack } from 'expo-router';
@@ -5,6 +7,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import { GameProvider } from '@/state/GameProvider';
@@ -12,7 +15,7 @@ import { paper } from '@/theme';
 
 import '../global.css';
 
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync().catch(() => undefined);
 
 export default function RootLayout() {
   const [loaded, error] = useFonts([
@@ -46,16 +49,18 @@ export default function RootLayout() {
   }
 
   return (
-    <GluestackUIProvider mode="light">
-      <GameProvider>
-        <StatusBar style="dark" />
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            contentStyle: { backgroundColor: paper },
-          }}
-        />
-      </GameProvider>
-    </GluestackUIProvider>
+    <SafeAreaProvider>
+      <GluestackUIProvider mode="light">
+        <GameProvider>
+          <StatusBar style="dark" />
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              contentStyle: { backgroundColor: paper },
+            }}
+          />
+        </GameProvider>
+      </GluestackUIProvider>
+    </SafeAreaProvider>
   );
 }

@@ -208,6 +208,11 @@ export function submitGuess(state: GameState, guess: string): GameState {
   if (wordsMatch(guess, state.civilianWord)) {
     return finish(state, 'mrWhite', 'guess');
   }
+  const guesser = state.eliminatedId ? playerById(state, state.eliminatedId) : null;
+  // Alive endgame guess: a miss ends the round for the civilians immediately.
+  if (guesser?.role === 'mrWhite' && guesser.alive) {
+    return finish(state, 'civilians', 'board');
+  }
   return settleOrContinue(state);
 }
 
@@ -259,6 +264,10 @@ export function scoreFor(role: Role, winner: Winner): number {
 function settleOrContinue(state: GameState): GameState {
   const winner = boardWinner(state.players);
   if (winner) return finish(state, winner, 'board');
+  const guesser = livingMrWhiteGuesser(state);
+  if (guesser) {
+    return { ...state, phase: 'guess', eliminatedId: guesser.id };
+  }
   return { ...state, phase: 'board' };
 }
 
@@ -280,6 +289,19 @@ function finish(state: GameState, winner: Winner, winCause: WinCause): GameState
   };
 }
 
+/** Living Mr. White who must guess when only one Civilian remains and no Undercover is left. */
+function livingMrWhiteGuesser(state: GameState): Player | null {
+  const alive = state.players.filter((player) => player.alive);
+  const civilians = alive.filter((player) => player.role === 'civilian').length;
+  if (civilians > 1) return null;
+  if (alive.some((player) => player.role === 'undercover')) return null;
+  for (const id of state.turnOrder) {
+    const player = alive.find((item) => item.id === id);
+    if (player?.role === 'mrWhite') return player;
+  }
+  return alive.find((player) => player.role === 'mrWhite') ?? null;
+}
+
 export function boardWinner(players: Player[]): Winner | null {
   const alive = players.filter((player) => player.alive);
   const civilians = alive.filter((player) => player.role === 'civilian').length;
@@ -287,9 +309,8 @@ export function boardWinner(players: Player[]): Winner | null {
     (player) => player.role === 'undercover' || player.role === 'mrWhite',
   ).length;
   if (infiltrators === 0 && civilians > 0) return 'civilians';
-  if (civilians <= 1 && infiltrators > 0) {
-    const undercoverAlive = alive.some((player) => player.role === 'undercover');
-    return undercoverAlive ? 'undercover' : 'mrWhite';
+  if (civilians <= 1 && alive.some((player) => player.role === 'undercover')) {
+    return 'undercover';
   }
   return null;
 }

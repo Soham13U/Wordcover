@@ -249,7 +249,32 @@ describe('elimination and scoring', () => {
     );
   });
 
-  it('lets Mr. White win by outlasting the civilians', () => {
+  it('lets a living Mr. White guess when one civilian remains', () => {
+    let state = toBoard(
+      match({
+        names: ['Ada', 'Bea', 'Cal'],
+        roles: ['civilian', 'civilian', 'mrWhite'],
+        undercover: 0,
+        mrWhite: 1,
+        civilianSide: 'left',
+      }),
+    );
+    state = eliminatePlayer(state, 'p1');
+    assert.equal(state.phase, 'guess');
+    assert.equal(state.eliminatedId, 'p3');
+    assert.equal(state.players.find((player) => player.id === 'p3')?.alive, true);
+
+    const won = submitGuess(state, 'Apple');
+    assert.equal(won.winner, 'mrWhite');
+    assert.equal(won.winCause, 'guess');
+    assert.deepEqual(deciderNames(won), ['Cal']);
+    assert.deepEqual(
+      won.players.map((player) => player.score),
+      [0, 0, 6],
+    );
+  });
+
+  it('gives civilians the win when a living Mr. White misses the endgame guess', () => {
     let state = toBoard(
       match({
         names: ['Ada', 'Bea', 'Cal'],
@@ -259,15 +284,34 @@ describe('elimination and scoring', () => {
       }),
     );
     state = eliminatePlayer(state, 'p1');
-    assert.equal(state.winner, 'mrWhite');
+    state = submitGuess(state, 'nope');
+    assert.equal(state.winner, 'civilians');
     assert.equal(state.winCause, 'board');
-    assert.deepEqual(deciderNames(state), ['Cal']);
-    const { winCause: boardCause, ...savedBoard } = state;
-    assert.equal(boardCause, 'board');
-    assert.deepEqual(deciderNames(savedBoard), ['Cal']);
     assert.deepEqual(
       state.players.map((player) => player.score),
-      [0, 0, 6],
+      [2, 2, 0],
+    );
+  });
+
+  it('gives civilians the win when only a Joker remains beside them', () => {
+    let state = toBoard(
+      match({
+        names: ['Ada', 'Bea', 'Cal', 'Dee'],
+        roles: ['civilian', 'civilian', 'mrWhite', 'joker'],
+        undercover: 0,
+        mrWhite: 1,
+        joker: 1,
+      }),
+    );
+    state = eliminatePlayer(state, 'p1');
+    assert.equal(state.phase, 'guess');
+    state = submitGuess(state, 'nope');
+    assert.equal(state.winner, 'civilians');
+    assert.equal(state.players.find((player) => player.id === 'p2')?.alive, true);
+    assert.equal(state.players.find((player) => player.id === 'p4')?.alive, true);
+    assert.deepEqual(
+      state.players.map((player) => player.score),
+      [2, 2, 0, 0],
     );
   });
 

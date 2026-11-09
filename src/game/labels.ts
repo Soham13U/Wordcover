@@ -1,4 +1,3 @@
-import { boardWinner } from './engine.ts';
 import type { GameState, Player, Role, Winner } from './types.ts';
 
 export function roleLabel(role: Role | string) {
@@ -47,19 +46,8 @@ export function deciderNames(
   if (game.winner === 'undercover') return namesWithRole(game.players, 'undercover', true);
   if (game.winner !== 'mrWhite') return [];
 
-  if (game.winCause === 'guess') {
-    const guesser = game.players.find(
-      (player) => player.id === game.eliminatedId && player.role === 'mrWhite',
-    );
-    return guesser ? [guesser.name] : [];
-  }
-
-  if (game.winCause === 'board' || boardWinner(game.players) === 'mrWhite') {
-    return namesWithRole(game.players, 'mrWhite', true);
-  }
-
-  const eliminated = game.players.find(
+  const guesser = game.players.find(
     (player) => player.id === game.eliminatedId && player.role === 'mrWhite',
   );
-  return eliminated ? [eliminated.name] : [];
+  return guesser ? [guesser.name] : [];
 }

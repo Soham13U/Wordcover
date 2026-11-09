@@ -36,7 +36,7 @@ export default function RulesScreen() {
         />
         <Block
           title="Mr. White"
-          body="If Mr. White is eliminated, they get one guess at the Civilians' word. A correct guess wins the round immediately. A wrong guess removes them and the round checks the table."
+          body="If Mr. White is eliminated, they get one guess at the Civilians' word. A correct guess wins the round immediately. A wrong guess removes them and the round checks the table. If only one Civilian remains with Mr. White still in and no Undercover left, Mr. White also guesses while alive. A miss then awards the round to the Civilians."
         />
         <Block
           title="Joker"
@@ -44,7 +44,7 @@ export default function RulesScreen() {
         />
         <Block
           title="Winning a round"
-          body="Civilians win by removing every Undercover and Mr. White, even if a Joker is still in. Undercover wins if only one Civilian is left while an Undercover is still in. Mr. White wins by guessing the civilian word, or by being the last infiltrator when only one Civilian remains. Winning Civilians score 2, a winning Mr. White scores 6, and winning Undercovers score 10. On an Undercover win, Mr. White still scores 6. An eliminated Joker scores 6 and wins alone."
+          body="Civilians win by removing every Undercover and Mr. White, even if a Joker is still in. Undercover wins if only one Civilian is left while an Undercover is still in. Mr. White wins only by guessing the civilian word. Winning Civilians score 2, a winning Mr. White scores 6, and winning Undercovers score 10. On an Undercover win, Mr. White still scores 6. An eliminated Joker scores 6 and wins alone."
         />
         <Block
           title="More rounds"

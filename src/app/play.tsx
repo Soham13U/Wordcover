@@ -13,7 +13,12 @@ import { Box } from '@/components/ui/box';
 import { Heading } from '@/components/ui/heading';
 import { Pressable } from '@/components/ui/pressable';
 import { Text } from '@/components/ui/text';
-import { playerById, secretFor, submitGuess as previewGuess } from '@/game/engine';
+import {
+  eliminatePlayer as previewEliminate,
+  playerById,
+  secretFor,
+  submitGuess as previewGuess,
+} from '@/game/engine';
 import { deciderNames, joinNames, roleLabel, winnerDetail, winnerLabel } from '@/game/labels';
 import type { GameState, Player } from '@/game/types';
 import { useGame } from '@/state/GameProvider';
@@ -176,25 +181,27 @@ function Board({
 }) {
   const api = useGame();
   const [guess, setGuess] = useState('');
-  const [guessReady, setGuessReady] = useState(game.phase === 'guess');
   const [pending, setPending] = useState<Player | null>(null);
   const firstId = game.turnOrder[0];
   const first = firstId ? playerById(game, firstId) : null;
   const ordered = game.turnOrder.map((id) => playerById(game, id));
   const eliminated = game.eliminatedId ? playerById(game, game.eliminatedId) : null;
+  const endgameGuess = eliminated?.role === 'mrWhite' && eliminated.alive;
 
   function applyEliminate() {
     const player = pending;
     if (!player) return;
     setPending(null);
     if (player.role === 'mrWhite') {
-      setGuess('');
-      setGuessReady(true);
       api.eliminatePlayer(player.id);
       return;
     }
+    const next = previewEliminate(game, player.id);
     api.eliminatePlayer(player.id);
-    onNotice({ title: player.name, message: `${roleLabel(player.role)}.` });
+    // Skip the role toast when the board immediately opens a guess or ends the round.
+    if (next.phase === 'board') {
+      onNotice({ title: player.name, message: `${roleLabel(player.role)}.` });
+    }
   }
 
   return (
@@ -239,17 +246,23 @@ function Board({
         onConfirm={applyEliminate}
         onCancel={() => setPending(null)}
       />
-      <Dialog visible={game.phase === 'guess' && guessReady} onRequestClose={() => {}}>
+      <Dialog visible={game.phase === 'guess'} onRequestClose={() => {}}>
         <Text
           className="text-xs uppercase tracking-widest text-muted-foreground"
           style={{ color: mutedInk, fontFamily: 'Outfit' }}>
           Mr. White
         </Text>
         <Heading size="2xl" style={{ color: ink, fontFamily: 'Fraunces' }}>
-          {eliminated ? `${eliminated.name} is Mr. White` : 'Mr. White'}
+          {endgameGuess
+            ? `${eliminated.name} guesses`
+            : eliminated
+              ? `${eliminated.name} is Mr. White`
+              : 'Mr. White'}
         </Heading>
         <Text className="leading-6" style={{ color: ink, fontFamily: 'Outfit' }}>
-          Guess the civilian word. Spelling can differ by case, not by letters.
+          {endgameGuess
+            ? 'Only one Civilian remains. Guess the civilian word. A miss awards the round to the Civilians.'
+            : 'Guess the civilian word. Spelling can differ by case, not by letters.'}
         </Text>
         <Field value={guess} onChangeText={setGuess} placeholder="Your guess" />
         <ActionButton
