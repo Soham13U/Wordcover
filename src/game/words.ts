@@ -25,97 +25,93 @@ const pairs: [Category, string, string][] = [
   // FOOD (20)
   // ==========================================
   ["food", "Mango", "Peach"],
-  ["food", "Sushi", "Sashimi"], //
+  ["food", "Sushi", "Tempura"],
   ["food", "Bagel", "Doughnut"],
-  ["food", "Latte", "Cappuccino"], //
+  ["food", "Latte", "Espresso"],
   ["food", "Taco", "Burrito"],
   ["food", "Pancake", "Waffle"],
-  ["food", "Hummus", "Guacamole"], //
+  ["food", "Hummus", "Salsa"],
   ["food", "Ramen", "Pho"],
   ["food", "Brownie", "Cookie"],
   ["food", "Popcorn", "Nachos"],
-  ["food", "Omelette", "Scrambled eggs"], //
-  ["food", "Chili", "Curry"], //
+  ["food", "Curry", "Tandoori"],
   ["food", "Pizza", "Flatbread"],
-  ["food", "Ice cream", "Frozen yogurt"], //
+  ["food", "Ice cream", "Sorbet"],
   ["food", "Burger", "Sandwich"],
-  ["food", "Croissant", "Pretzel"], //
-  ["food", "Muffin", "Cupcake"], //
+  ["food", "Croissant", "Baguette"],
   ["food", "Dumpling", "Spring roll"],
   ["food", "Biryani", "Pulao"],
-  ["food", "Smoothie", "Milkshake"], //
+  ["food", "Smoothie", "Juice"],
 
   // ==========================================
   // ANIMALS (20)
   // ==========================================
   ["animals", "Dolphin", "Shark"],
   ["animals", "Lion", "Tiger"],
-  ["animals", "Frog", "Toad"], //
-  ["animals", "Rabbit", "Hare"], //
-  ["animals", "Crocodile", "Alligator"], //
-  ["animals", "Moth", "Butterfly"], //
-  ["animals", "Donkey", "Mule"], //
-  ["animals", "Seal", "Sea lion"], //
-  ["animals", "Parrot", "Toucan"], //
-  ["animals", "Turtle", "Tortoise"], //
-  ["animals", "Wolf", "Coyote"], //
-  ["animals", "Bee", "Wasp"], //
-  ["animals", "Penguin", "Puffin"], //
+  ["animals", "Frog", "Salamander"],
+  ["animals", "Rabbit", "Squirrel"],
+  ["animals", "Crocodile", "Snake"],
+  ["animals", "Butterfly", "Dragonfly"],
+  ["animals", "Donkey", "Goat"],
+  ["animals", "Parrot", "Flamingo"],
+  ["animals", "Turtle", "Crab"],
+  ["animals", "Wolf", "Fox"],
+  ["animals", "Bee", "Ant"],
+  ["animals", "Penguin", "Ostrich"],
   ["animals", "Owl", "Eagle"],
   ["animals", "Shark", "Orca"],
   ["animals", "Horse", "Zebra"],
   ["animals", "Camel", "Giraffe"],
-  ["animals", "Octopus", "Squid"], //
-  ["animals", "Cheetah", "Leopard"], //
-  ["animals", "Crow", "Raven"], //
+  ["animals", "Octopus", "Jellyfish"],
+  ["animals", "Cheetah", "Hyena"],
+  ["animals", "Crow", "Vulture"],
 
   // ==========================================
   // OBJECTS (20)
   // ==========================================
   ["objects", "Sofa", "Armchair"],
-  ["objects", "Kettle", "Teapot"], //
+  ["objects", "Kettle", "Thermos"],
   ["objects", "Backpack", "Suitcase"],
   ["objects", "Candle", "Lantern"],
-  ["objects", "Hammer", "Mallet"], //
-  ["objects", "Blanket", "Quilt"], //
+  ["objects", "Hammer", "Screwdriver"],
+  ["objects", "Blanket", "Sleeping bag"],
   ["objects", "Mirror", "Window"],
   ["objects", "Pencil", "Crayon"],
   ["objects", "Keyboard", "Typewriter"],
-  ["objects", "Umbrella", "Parasol"], //
+  ["objects", "Umbrella", "Raincoat"],
   ["objects", "Clock", "Watch"],
   ["objects", "Scissors", "Knife"],
   ["objects", "Headphones", "Earbuds"],
   ["objects", "Microscope", "Telescope"],
-  ["objects", "Notebook", "Diary"], //
+  ["objects", "Notebook", "Textbook"],
   ["objects", "Flashlight", "Lamp"],
   ["objects", "Bicycle", "Scooter"],
   ["objects", "Elevator", "Escalator"],
-  ["objects", "Pillow", "Cushion"], //
+  ["objects", "Pillow", "Mattress"],
   ["objects", "Refrigerator", "Freezer"],
 
   // ==========================================
   // PLACES (20)
   // ==========================================
   ["places", "Library", "Bookstore"],
-  ["places", "Beach", "Lakeshore"], //
+  ["places", "Beach", "Pool"],
   ["places", "Airport", "Train station"],
-  ["places", "Museum", "Gallery"], //
-  ["places", "Kitchen", "Pantry"], //
-  ["places", "Stadium", "Arena"], //
-  ["places", "Desert", "Canyon"], //
-  ["places", "Harbor", "Marina"], //
+  ["places", "Museum", "Monument"],
+  ["places", "Kitchen", "Dining room"],
+  ["places", "Stadium", "Racetrack"],
+  ["places", "Desert", "Tundra"],
+  ["places", "Harbor", "Lighthouse"],
   ["places", "Classroom", "Lecture hall"],
   ["places", "Bakery", "Cafe"],
-  ["places", "Forest", "Jungle"], //
+  ["places", "Forest", "Savanna"],
   ["places", "Attic", "Basement"],
   ["places", "Hospital", "Clinic"],
-  ["places", "Hotel", "Resort"], //
+  ["places", "Hotel", "Hostel"],
   ["places", "Zoo", "Aquarium"],
-  ["places", "Castle", "Palace"], //
+  ["places", "Castle", "Mansion"],
   ["places", "Gym", "Playground"],
-  ["places", "Cinema", "Theater"], //
-  ["places", "Supermarket", "Farmers market"], //
-  ["places", "Temple", "Monastery"], //
+  ["places", "Supermarket", "Mall"],
+  ["places", "Temple", "Church"],
 
   // ==========================================
   // JOBS (20)
@@ -132,38 +128,34 @@ const pairs: [Category, string, string][] = [
   ["jobs", "Mechanic", "Electrician"],
   ["jobs", "Journalist", "Novelist"],
   ["jobs", "Barista", "Bartender"],
-  ["jobs", "Architect", "Civil engineer"],
-  ["jobs", "Photographer", "Videographer"],
   ["jobs", "Dentist", "Surgeon"],
-  ["jobs", "Scientist", "Inventor"],
+  ["jobs", "Scientist", "Astronaut"],
   ["jobs", "Cashier", "Salesperson"],
-  ["jobs", "Librarian", "Archivist"],
-  ["jobs", "Police officer", "Security guard"],
+  ["jobs", "Librarian", "Bookseller"],
+  ["jobs", "Police officer", "Soldier"],
   ["jobs", "Programmer", "Hacker"],
 
   // ==========================================
   // ACTIVITIES (20)
   // ==========================================
   ["activities", "Hiking", "Camping"],
-  ["activities", "Swimming", "Diving"],
-  ["activities", "Jogging", "Sprinting"],
+  ["activities", "Swimming", "Kayaking"],
+  ["activities", "Jogging", "Rowing"],
   ["activities", "Singing", "Rapping"],
-  ["activities", "Painting", "Sketching"],
+  ["activities", "Painting", "Sculpting"],
   ["activities", "Reading", "Studying"],
   ["activities", "Cooking", "Baking"],
   ["activities", "Fishing", "Hunting"],
   ["activities", "Surfing", "Skateboarding"],
-  ["activities", "Yoga", "Meditation"],
   ["activities", "Cycling", "Running"],
   ["activities", "Dancing", "Gymnastics"],
   ["activities", "Photography", "Filmmaking"],
   ["activities", "Gardening", "Farming"],
   ["activities", "Boxing", "Wrestling"],
   ["activities", "Skiing", "Snowboarding"],
-  ["activities", "Shopping", "Browsing"],
   ["activities", "Chess", "Poker"],
   ["activities", "Karaoke", "Concert"],
-  ["activities", "Picnic", "Barbecue"],
+  ["activities", "Picnic", "Potluck"],
 ];
 
 export const BUILTIN_PAIRS: WordPair[] = pairs.map(

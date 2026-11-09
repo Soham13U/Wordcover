@@ -1,6 +1,11 @@
 import 'react-native-gesture-handler';
 
-import { Fraunces_400Regular_Italic, Fraunces_700Bold, Fraunces_700Bold_Italic } from '@expo-google-fonts/fraunces';
+import {
+  Fraunces_400Regular,
+  Fraunces_400Regular_Italic,
+  Fraunces_700Bold,
+  Fraunces_700Bold_Italic,
+} from '@expo-google-fonts/fraunces';
 import { Outfit_400Regular, Outfit_500Medium, Outfit_600SemiBold, Outfit_700Bold } from '@expo-google-fonts/outfit';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -22,7 +27,8 @@ export default function RootLayout() {
     {
       fontFamily: 'Fraunces',
       fontDefinitions: [
-        { path: Fraunces_700Bold, weight: 700 },
+        { path: Fraunces_400Regular, weight: 400, style: 'normal' },
+        { path: Fraunces_700Bold, weight: 700, style: 'normal' },
         { path: Fraunces_400Regular_Italic, weight: 400, style: 'italic' },
         { path: Fraunces_700Bold_Italic, weight: 700, style: 'italic' },
       ],
@@ -30,10 +36,10 @@ export default function RootLayout() {
     {
       fontFamily: 'Outfit',
       fontDefinitions: [
-        { path: Outfit_400Regular, weight: 400 },
-        { path: Outfit_500Medium, weight: 500 },
-        { path: Outfit_600SemiBold, weight: 600 },
-        { path: Outfit_700Bold, weight: 700 },
+        { path: Outfit_400Regular, weight: 400, style: 'normal' },
+        { path: Outfit_500Medium, weight: 500, style: 'normal' },
+        { path: Outfit_600SemiBold, weight: 600, style: 'normal' },
+        { path: Outfit_700Bold, weight: 700, style: 'normal' },
       ],
     },
   ]);
